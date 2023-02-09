@@ -12,10 +12,10 @@ local recoilConfig =
 {
   {
     name            = "Default", --配置文件名称
-    recoilMoveY     = 1, --Y移动
-    recoilMoveX     = 8, --X基础移动
-    randomMoveX     = 8, --X随机移动
-    interval        = 12, --动作间隔
+    recoilMoveY     = 2, --Y移动
+    recoilMoveX     = 12, --X基础移动
+    randomMoveX     = 2, --X随机移动
+    interval        = 1, --动作间隔
     timeout         = 2500, --最大启用时间
     delay           = 0, --启用延迟
     --mainColor     = {255,0,0} --什么时候能改鼠标颜色啊?
@@ -130,7 +130,8 @@ local function reduceRecoil(event, arg, ...)
   
       if GetRunningTime() - startTime >= delay and reachLimit == false then
   
-        local rdX = math.random(-math.floor(randomX/2), randomX)
+        local rdX = math.random(0, randomX)
+        local rdY = 0 --math.random(-1, 2)
     
         local dif = GetRunningTime() - startTime
         
@@ -138,27 +139,22 @@ local function reduceRecoil(event, arg, ...)
           break
         end
     
-        local rate = dif / timeout
-    
-        local intervalTmp = math.ceil(((rate  * 0.7) + 0.3) * interval)
+        --local rate = dif / timeout
+        --local intervalTmp = math.ceil(((rate  * 0.7) + 0.3) * interval)
+        --local moveXTmp = math.ceil((1 - (rate*0.3))* moveX)
         
-        local moveXTmp = math.ceil((1 - rate)* moveX)
-      
-        MoveMouseRelative(moveXTmp + rdX , moveY)
+        intervalTmp = interval
+        moveXTmp  = moveX
         
+        MoveMouseRelative(moveXTmp + rdX , rdY)
+        Sleep(intervalTmp)
+        MoveMouseRelative(-moveXTmp - rdX, moveY)
         Sleep(intervalTmp)
         
-        MoveMouseRelative(-moveXTmp - rdX, 0)
-        
-        Sleep(intervalTmp)
-        
-        MoveMouseRelative(-moveXTmp - rdX, 0)
-        
-        Sleep(intervalTmp)
-        
-        MoveMouseRelative(moveXTmp + rdX, 0)
-        
-        Sleep(intervalTmp)
+        --MoveMouseRelative(-moveXTmp - rdX, rdY)
+        --Sleep(intervalTmp)
+        --MoveMouseRelative(moveXTmp + rdX, moveY)
+        --Sleep(intervalTmp)
         
       end
       
