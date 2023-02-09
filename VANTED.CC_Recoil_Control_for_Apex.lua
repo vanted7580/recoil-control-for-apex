@@ -13,9 +13,9 @@ local recoilConfig =
   {
     name            = "Default", --配置文件名称
     recoilMoveY     = 1, --Y移动
-    recoilMoveX     = 5, --X基础移动
+    recoilMoveX     = 8, --X基础移动
     randomMoveX     = 8, --X随机移动
-    interval        = 4, --动作间隔
+    interval        = 12, --动作间隔
     timeout         = 2500, --最大启用时间
     delay           = 0, --启用延迟
     --mainColor     = {255,0,0} --什么时候能改鼠标颜色啊?
@@ -130,23 +130,35 @@ local function reduceRecoil(event, arg, ...)
   
       if GetRunningTime() - startTime >= delay and reachLimit == false then
   
-        rdX = math.random(-math.floor(randomX/2), randomX)
+        local rdX = math.random(-math.floor(randomX/2), randomX)
     
-        MoveMouseRelative(moveX + rdX ,moveY)
+        local dif = GetRunningTime() - startTime
         
-        Sleep(interval)
+        if dif > timeout then
+          break
+        end
+    
+        local rate = dif / timeout
+    
+        local intervalTmp = math.ceil(((rate  * 0.7) + 0.3) * interval)
         
-        MoveMouseRelative(-moveX - rdX,0)
+        local moveXTmp = math.ceil((1 - rate)* moveX)
+      
+        MoveMouseRelative(moveXTmp + rdX , moveY)
         
-        Sleep(interval)
+        Sleep(intervalTmp)
         
-        MoveMouseRelative(-moveX + rdX,0)
+        MoveMouseRelative(-moveXTmp - rdX, 0)
         
-        Sleep(interval)
+        Sleep(intervalTmp)
         
-        MoveMouseRelative(moveX - rdX,0)
+        MoveMouseRelative(-moveXTmp - rdX, 0)
         
-        Sleep(interval)
+        Sleep(intervalTmp)
+        
+        MoveMouseRelative(moveXTmp + rdX, 0)
+        
+        Sleep(intervalTmp)
         
       end
       
