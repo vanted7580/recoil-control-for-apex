@@ -8,11 +8,13 @@ Lua for Logitech G HUB.
     {
       {
         name            = "Default", --配置文件名称
-        recoilMoveY     = 1, --Y移动
-        recoilMoveX     = 5, --X基础移动
-        randomMoveX     = 8, --X随机移动
-        interval        = 4, --动作间隔
+        recoilMoveY     = 2, --Y移动
+        recoilMoveX     = 10, --X基础移动
+        randomMoveX     = 0, --X随机移动
+        interval        = 1, --动作间隔
         timeout         = 2500, --最大启用时间
+        boostTime       = 700,  --灵敏度增强时间
+        boostRate       = 2,  --灵敏度增强倍率
         delay           = 0, --启用延迟
       }
     }
