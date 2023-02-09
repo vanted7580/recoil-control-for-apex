@@ -13,10 +13,12 @@ local recoilConfig =
   {
     name            = "Default", --配置文件名称
     recoilMoveY     = 2, --Y移动
-    recoilMoveX     = 12, --X基础移动
-    randomMoveX     = 2, --X随机移动
+    recoilMoveX     = 10, --X基础移动
+    randomMoveX     = 0, --X随机移动
     interval        = 1, --动作间隔
     timeout         = 2500, --最大启用时间
+    boostTime       = 700,  --灵敏度增强时间
+    boostRate       = 2,  --灵敏度增强倍率
     delay           = 0, --启用延迟
     --mainColor     = {255,0,0} --什么时候能改鼠标颜色啊?
   },
@@ -27,6 +29,8 @@ local recoilConfig =
     randomMoveX     = 0,
     interval        = 0,
     timeout         = 0,
+    boostTime       = 0,
+    boostRate       = 0,
     delay           = 0,
   }
 }
@@ -70,7 +74,7 @@ local tempVar =
 }
 
 local function init()
-  EnablePrimaryMouseButtonEvents(true) 
+  --EnablePrimaryMouseButtonEvents(true) 
   ClearLog()
   printMSG("Welcome! Created by VANTED.", none, true)
   printMSG("This script shared in GPL-3.0 license.", none, true)
@@ -79,7 +83,7 @@ end
 
 local function unload()
   ClearLog()
-  OutputLogMessage("Goodbye!\n")
+  printMSG("Goodbye!", none, true)
 end
 
 local function loopProfile(event, arg, ...)
@@ -110,6 +114,8 @@ local function reduceRecoil(event, arg, ...)
   local interval= recoilConfig[tempVar.curProfile].interval
   local timeout = recoilConfig[tempVar.curProfile].timeout
   local delay   = recoilConfig[tempVar.curProfile].delay
+  local boostTime = recoilConfig[tempVar.curProfile].boostTime
+  local boostRate = recoilConfig[tempVar.curProfile].boostRate
 
   local firePressed = false
   local scopePressed = false
@@ -139,22 +145,25 @@ local function reduceRecoil(event, arg, ...)
           break
         end
     
-        --local rate = dif / timeout
+        local rate = 1
+        
+        if dif < boostTime then
+          rate = ((1 - (dif / boostTime))*boostRate ) + 1
+        else
+          rate = 1
+        end
+        
         --local intervalTmp = math.ceil(((rate  * 0.7) + 0.3) * interval)
         --local moveXTmp = math.ceil((1 - (rate*0.3))* moveX)
         
         intervalTmp = interval
         moveXTmp  = moveX
+        moveYTmp = math.floor(rate * moveY)
         
         MoveMouseRelative(moveXTmp + rdX , rdY)
         Sleep(intervalTmp)
-        MoveMouseRelative(-moveXTmp - rdX, moveY)
+        MoveMouseRelative(-moveXTmp - rdX, moveYTmp)
         Sleep(intervalTmp)
-        
-        --MoveMouseRelative(-moveXTmp - rdX, rdY)
-        --Sleep(intervalTmp)
-        --MoveMouseRelative(moveXTmp + rdX, moveY)
-        --Sleep(intervalTmp)
         
       end
       
