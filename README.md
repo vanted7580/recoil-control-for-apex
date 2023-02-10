@@ -33,3 +33,11 @@ Lua for Logitech G HUB.
       --输出控制台信息
       debugMSG = true
     }
+
+## License
+
+[VANTED.CC_Recoil_Control_for_Apex.lua](https://github.com/wqy224491/recoil-control-for-apex/blob/main/VANTED.CC_Recoil_Control_for_Apex.lua) is available for [GPL-3.0 License](https://github.com/wqy224491/MSR-GAMING-ASSISTANT/blob/main/LICENSE) in files.
+
+此脚本适用于[GPL-3.0 协议](https://github.com/wqy224491/MSR-GAMING-ASSISTANT/blob/main/LICENSE)。
+
+<img src="https://upload.cc/i1/2023/01/01/0nyLFI.png" width="280">
