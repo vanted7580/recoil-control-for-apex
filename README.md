@@ -2,8 +2,8 @@
 
 Lua for Logitech G HUB.
 
-## 调整参数
-### 参数设置
+## 调整参数 Configurtion
+### 参数设置 Profile Settings
     local recoilConfig =
     {
       {
@@ -19,7 +19,7 @@ Lua for Logitech G HUB.
       }
     }
     
-### 程序设置
+### 程序设置 General Settings
     local scriptConfig = 
     {
       buttons = 
@@ -34,7 +34,7 @@ Lua for Logitech G HUB.
       debugMSG = true
     }
 
-## License
+## 开源许可 License
 
 [VANTED.CC_Recoil_Control_for_Apex.lua](https://github.com/wqy224491/recoil-control-for-apex/blob/main/VANTED.CC_Recoil_Control_for_Apex.lua) is available for [GPL-3.0 License](https://github.com/wqy224491/MSR-GAMING-ASSISTANT/blob/main/LICENSE) in files.
 
