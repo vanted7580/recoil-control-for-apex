@@ -2,8 +2,6 @@
 
 Lua for Logitech G HUB.
 
-### **不要**试图销售这个脚本，这会违反开源协议。
-
 ## 调整参数
 ### 参数设置
     local recoilConfig =
