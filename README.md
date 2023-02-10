@@ -1,6 +1,9 @@
 # VANTED.CC | RECOIL CONTROL for APEX
+#### Apex后座控制脚本
 
-Lua for Logitech G HUB.
+Lua for [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html).
+
+需要配合[罗技 GHUB](https://support.logi.com/hc/en-us/articles/360025298133)使用。
 
 ## 调整参数 Configurtion
 ### 参数设置 Profile
@@ -33,6 +36,7 @@ Lua for Logitech G HUB.
       --输出控制台信息
       debugMSG = true
     }
+
 
 ## 开源许可 License
 
