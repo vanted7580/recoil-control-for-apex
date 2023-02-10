@@ -3,7 +3,7 @@
 Lua for Logitech G HUB.
 
 ## 调整参数 Configurtion
-### 参数设置 Profile Settings
+### 参数设置 Profile
     local recoilConfig =
     {
       {
@@ -19,7 +19,7 @@ Lua for Logitech G HUB.
       }
     }
     
-### 程序设置 General Settings
+### 程序设置 General
     local scriptConfig = 
     {
       buttons = 
