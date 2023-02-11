@@ -1,3 +1,15 @@
+--[[
+  
+  Created by VANTED
+  
+  Repository: https://github.com/wqy224491/recoil-control-for-apex
+  
+  This product is available for GPL-3.0 License in repository.
+  
+  Current version: 1.4
+  
+]]
+
 --Define
 local PROFILE_ACTIVATED      = "PROFILE_ACTIVATED"
 local PROFILE_DEACTIVATED    = "PROFILE_DEACTIVATED"
@@ -13,14 +25,13 @@ local recoilConfig =
   {
     name            = "Default", --配置文件名称
     recoilMoveY     = 2, --Y移动
-    recoilMoveX     = 10, --X基础移动
+    recoilMoveX     = 8, --X基础移动
     randomMoveX     = 0, --X随机移动
     interval        = 1, --动作间隔
     timeout         = 2500, --最大启用时间
     boostTime       = 700,  --灵敏度增强时间
-    boostRate       = 2,  --灵敏度增强倍率
+    boostRate       = 1.6,  --灵敏度增强倍率
     delay           = 0, --启用延迟
-    --mainColor     = {255,0,0} --什么时候能改鼠标颜色啊?
   },
   {
     name            = "Off",
@@ -74,7 +85,7 @@ local tempVar =
 }
 
 local function init()
-  --EnablePrimaryMouseButtonEvents(true) 
+  EnablePrimaryMouseButtonEvents(true) 
   ClearLog()
   printMSG("Welcome! Created by VANTED.", none, true)
   printMSG("This script shared in GPL-3.0 license.", none, true)
@@ -153,9 +164,6 @@ local function reduceRecoil(event, arg, ...)
           rate = 1
         end
         
-        --local intervalTmp = math.ceil(((rate  * 0.7) + 0.3) * interval)
-        --local moveXTmp = math.ceil((1 - (rate*0.3))* moveX)
-        
         intervalTmp = interval
         moveXTmp  = moveX
         moveYTmp = math.floor(rate * moveY)
@@ -202,5 +210,3 @@ function OnEvent(event, arg, ...)
   reduceRecoil(event, arg, ...)
   
 end
-
--- Created by VANTED
