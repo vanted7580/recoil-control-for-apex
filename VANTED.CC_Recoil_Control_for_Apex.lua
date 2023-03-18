@@ -6,7 +6,7 @@
   
   This product is available for GPL-3.0 License in repository.
   
-  Current version: 1.4
+  Current version: 1.5
   
 ]]
 
