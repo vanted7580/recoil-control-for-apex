@@ -25,12 +25,12 @@ local recoilConfig =
   {
     name            = "Default", --配置文件名称
     recoilMoveY     = 2, --Y移动
-    recoilMoveX     = 8, --X基础移动
+    recoilMoveX     = 7, --X基础移动
     randomMoveX     = 0, --X随机移动
     interval        = 1, --动作间隔
-    timeout         = 2500, --最大启用时间
-    boostTime       = 700,  --灵敏度增强时间
-    boostRate       = 1.6,  --灵敏度增强倍率
+    timeout         = 3000, --最大启用时间
+    boostTime       = 1000,  --灵敏度增强时间
+    boostRate       = 1.5,  --灵敏度增强倍率
     delay           = 0, --启用延迟
   },
   {
@@ -151,7 +151,7 @@ local function reduceRecoil(event, arg, ...)
         local rdY = 0 --math.random(-1, 2)
     
         local dif = GetRunningTime() - startTime
-        
+    
         if dif > timeout then
           break
         end
@@ -165,12 +165,16 @@ local function reduceRecoil(event, arg, ...)
         end
         
         intervalTmp = interval
-        moveXTmp  = moveX
-        moveYTmp = math.floor(rate * moveY)
-        
-        MoveMouseRelative(moveXTmp + rdX , rdY)
+        moveXtmp  = moveX + rdX 
+        moveYtmp = math.floor(rate * moveY) + rdY 
+ 
+        MoveMouseRelative(-moveXtmp, 6)
         Sleep(intervalTmp)
-        MoveMouseRelative(-moveXTmp - rdX, moveYTmp)
+        MoveMouseRelative(moveXtmp, -(6-moveYtmp))
+        Sleep(intervalTmp)
+        MoveMouseRelative(-moveXtmp, 6)
+        Sleep(intervalTmp)
+        MoveMouseRelative(moveXtmp, -(6-moveYtmp))
         Sleep(intervalTmp)
         
       end
