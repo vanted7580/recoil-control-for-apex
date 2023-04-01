@@ -7,6 +7,8 @@ Lua for [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html).
 
 ## 调整参数 Configurtion
 ### 参数设置 Profile
+local recoilConfig =
+{
       {
         name            = "Default", --配置文件名称
         recoilMoveY     = 1, --Y移动
@@ -19,7 +21,7 @@ Lua for [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html).
         boostRate       = 4,  --灵敏度增强倍率
         delay           = 50, --启用延迟
       }
-    
+}
 ### 程序设置 General
     local scriptConfig = 
     {
