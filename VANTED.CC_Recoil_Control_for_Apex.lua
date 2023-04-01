@@ -6,7 +6,7 @@
   
   This product is available for GPL-3.0 License in repository.
   
-  Current version: 1.5
+  Current version: 1.6
   
 ]]
 
@@ -24,20 +24,22 @@ local recoilConfig =
 {
   {
     name            = "Default", --配置文件名称
-    recoilMoveY     = 2, --Y移动
-    recoilMoveX     = 7, --X基础移动
+    recoilMoveY     = 1, --Y移动
+    recoilMoveX     = 12, --X基础移动
     randomMoveX     = 0, --X随机移动
-    interval        = 1, --动作间隔
+    jitterY         = 6, --Y抖动
+    interval        = 4, --动作间隔
     timeout         = 3000, --最大启用时间
-    boostTime       = 1000,  --灵敏度增强时间
-    boostRate       = 1.5,  --灵敏度增强倍率
-    delay           = 0, --启用延迟
+    boostTime       = 700,  --灵敏度增强时间
+    boostRate       = 4,  --灵敏度增强倍率
+    delay           = 50, --启用延迟
   },
   {
     name            = "Off",
     recoilMoveY     = 0,
     recoilMoveX     = 0,
     randomMoveX     = 0,
+    jitterY         = 6, --Y抖动
     interval        = 0,
     timeout         = 0,
     boostTime       = 0,
@@ -121,7 +123,8 @@ local function reduceRecoil(event, arg, ...)
 
   local moveY   = recoilConfig[tempVar.curProfile].recoilMoveY
   local moveX   = recoilConfig[tempVar.curProfile].recoilMoveX
-  local randomX = recoilConfig[tempVar.curProfile].randomMoveX     
+  local randomX = recoilConfig[tempVar.curProfile].randomMoveX
+  local jitterY = recoilConfig[tempVar.curProfile].jitterY
   local interval= recoilConfig[tempVar.curProfile].interval
   local timeout = recoilConfig[tempVar.curProfile].timeout
   local delay   = recoilConfig[tempVar.curProfile].delay
@@ -133,6 +136,7 @@ local function reduceRecoil(event, arg, ...)
 
   local msgSent = false
   local reachLimit = false
+  
   repeat
 
     firePressed = IsMouseButtonPressed(scriptConfig.buttons.fire)
@@ -168,13 +172,9 @@ local function reduceRecoil(event, arg, ...)
         moveXtmp  = moveX + rdX 
         moveYtmp = math.floor(rate * moveY) + rdY 
  
-        MoveMouseRelative(-moveXtmp, 6)
+        MoveMouseRelative(-moveXtmp, jitterY)
         Sleep(intervalTmp)
-        MoveMouseRelative(moveXtmp, -(6-moveYtmp))
-        Sleep(intervalTmp)
-        MoveMouseRelative(-moveXtmp, 6)
-        Sleep(intervalTmp)
-        MoveMouseRelative(moveXtmp, -(6-moveYtmp))
+        MoveMouseRelative(moveXtmp, -(jitterY-moveYtmp))
         Sleep(intervalTmp)
         
       end
