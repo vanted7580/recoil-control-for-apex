@@ -7,21 +7,21 @@ Lua for [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html).
 
 ## 调整参数 Configurtion
 ### 参数设置 Profile
-local recoilConfig =
-{
+      local recoilConfig =
       {
-        name            = "Default", --配置文件名称
-        recoilMoveY     = 1, --Y移动
-        recoilMoveX     = 12, --X基础移动
-        randomMoveX     = 0, --X随机移动
-        jitterY         = 6, --Y抖动
-        interval        = 4, --动作间隔
-        timeout         = 3000, --最大启用时间
-        boostTime       = 700,  --灵敏度增强时间
-        boostRate       = 4,  --灵敏度增强倍率
-        delay           = 50, --启用延迟
+            {
+              name            = "Default", --配置文件名称
+              recoilMoveY     = 1, --Y移动
+              recoilMoveX     = 12, --X基础移动
+              randomMoveX     = 0, --X随机移动
+              jitterY         = 6, --Y抖动
+              interval        = 4, --动作间隔
+              timeout         = 3000, --最大启用时间
+              boostTime       = 700,  --灵敏度增强时间
+              boostRate       = 4,  --灵敏度增强倍率
+              delay           = 50, --启用延迟
+            }
       }
-}
 ### 程序设置 General
     local scriptConfig = 
     {
